@@ -64,7 +64,7 @@
   },
   "status": {
     "observedGeneration": 1,
-    "replicas": 1,
+    "replicas": 5,
     "updatedReplicas": 1,
     "readyReplicas": 1,
     "availableReplicas": 1,
