@@ -1,0 +1,75 @@
+{
+  "kind": "Deployment",
+  "apiVersion": "extensions/v1beta1",
+  "metadata": {
+    "name": "test",
+    "namespace": "default",
+    "selfLink": "/apis/extensions/v1beta1/namespaces/default/deployments/test",
+    "uid": "b0941187-1b46-11e9-b0b1-86ef3691aa91",
+    "resourceVersion": "115870",
+    "generation": 5,
+    "creationTimestamp": "2019-01-18T17:30:03Z",
+    "labels": { "k8s-app": "test" },
+    "annotations": { "deployment.kubernetes.io/revision": "2" }
+  },
+  "spec": {
+    "replicas": 1,
+    "selector": { "matchLabels": { "k8s-app": "test" } },
+    "template": {
+      "metadata": {
+        "name": "test",
+        "creationTimestamp": null,
+        "labels": { "k8s-app": "test" }
+      },
+      "spec": {
+        "containers": [
+          {
+            "name": "test",
+            "image": "nginx:alpine",
+            "resources": {},
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File",
+            "imagePullPolicy": "IfNotPresent",
+            "securityContext": { "privileged": false }
+          }
+        ],
+        "restartPolicy": "Always",
+        "terminationGracePeriodSeconds": 30,
+        "dnsPolicy": "ClusterFirst",
+        "securityContext": {},
+        "schedulerName": "default-scheduler"
+      }
+    },
+    "strategy": {
+      "type": "RollingUpdate",
+      "rollingUpdate": { "maxUnavailable": "25%", "maxSurge": "25%" }
+    },
+    "revisionHistoryLimit": 10,
+    "progressDeadlineSeconds": 600
+  },
+  "status": {
+    "observedGeneration": 5,
+    "replicas": 1,
+    "updatedReplicas": 1,
+    "readyReplicas": 1,
+    "availableReplicas": 1,
+    "conditions": [
+      {
+        "type": "Progressing",
+        "status": "True",
+        "lastUpdateTime": "2019-01-18T17:30:41Z",
+        "lastTransitionTime": "2019-01-18T17:30:03Z",
+        "reason": "NewReplicaSetAvailable",
+        "message": "ReplicaSet \"test-74c5cdcdc4\" has successfully progressed."
+      },
+      {
+        "type": "Available",
+        "status": "True",
+        "lastUpdateTime": "2019-01-19T13:18:02Z",
+        "lastTransitionTime": "2019-01-19T13:18:02Z",
+        "reason": "MinimumReplicasAvailable",
+        "message": "Deployment has minimum availability."
+      }
+    ]
+  }
+}
