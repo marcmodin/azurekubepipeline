@@ -1,0 +1,40 @@
+resources:
+  - repo: self
+queue:
+  name: Hosted Ubuntu 1604
+steps:
+  - task: Docker@0
+    displayName: "Build an image"
+    inputs:
+      containerregistrytype: "Container Registry"
+
+      dockerRegistryConnection: azureDockerhubConnection
+
+      imageName: "[hubid/repo]:$(Build.BuildId)"
+
+      includeLatestTag: true
+
+  - task: Docker@0
+    displayName: "Push an image"
+    inputs:
+      containerregistrytype: "Container Registry"
+
+      dockerRegistryConnection: azureDockerhubConnection
+
+      action: "Push an image"
+
+      imageName: "[hubid/repo]:$(Build.BuildId)"
+
+      includeLatestTag: true
+
+  - task: CopyFiles@2
+    displayName: "Copy k8's Deployment Files to Staging Directory"
+    inputs:
+      Contents: "azuredeployment-prod.yaml"
+
+      TargetFolder: "$(Build.ArtifactStagingDirectory)"
+
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish Artifact: Deployment File to Release"
+    inputs:
+      ArtifactName: deployment
