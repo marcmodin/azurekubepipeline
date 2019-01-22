@@ -19,3 +19,5 @@ spec:
           image: mrkmod/azuritest:latest
           ports:
             - containerPort: 80
+          command: ["/bin/sh"]
+          args: ["-c", "./bin/env.sh > env.js"]
