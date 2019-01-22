@@ -9,22 +9,12 @@
         font-family: Tahoma, Verdana, Arial, sans-serif;
     }
 </style>
+<script src="env.js"></script>
 </head>
 <body>
 <h1>Hello Azure from Docker with nginx!</h1>
 <h2>Now deployed through Azure Devops Pipeline</h2>
-<p id="host">Hostname: <b></b></p>
-<p id="port">Port: <b></b></p>
+<p id="host">Hostname: </p>
+<p id="port">Port:</p>
 </body>
-<script> 
-var hostname = window.location.hostname
-var ports = window.location.port
-console.log(hostname + ' : ' + ports)
-
-var host = document.getElementById('host')
-var port = document.getElementById('port')
-
-host.append(hostname)
-port.append(ports)
-</script>
 </html>
